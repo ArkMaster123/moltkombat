@@ -9,6 +9,7 @@ export const fighters: Fighter[] = [
     color: '#D97706',
     colorSecondary: '#F59E0B',
     avatar: '🧠',
+    imageUrl: '/fighters/claude.png',
     stats: { attack: 7, defense: 9, speed: 6, intelligence: 10 },
     moves: [
       { name: 'Thoughtful Strike', damage: 12, type: 'basic', energyCost: 0, accuracy: 0.9, animation: 'punch', description: 'A carefully considered punch' },
@@ -44,6 +45,7 @@ export const fighters: Fighter[] = [
     color: '#10B981',
     colorSecondary: '#34D399',
     avatar: '⚡',
+    imageUrl: '/fighters/gpt4o.png',
     stats: { attack: 8, defense: 7, speed: 8, intelligence: 9 },
     moves: [
       { name: 'Token Punch', damage: 13, type: 'basic', energyCost: 0, accuracy: 0.88, animation: 'punch', description: 'A rapid-fire token jab' },
@@ -79,6 +81,7 @@ export const fighters: Fighter[] = [
     color: '#3B82F6',
     colorSecondary: '#60A5FA',
     avatar: '💎',
+    imageUrl: '/fighters/gemini.png',
     stats: { attack: 8, defense: 6, speed: 9, intelligence: 8 },
     moves: [
       { name: 'Search Strike', damage: 11, type: 'basic', energyCost: 0, accuracy: 0.92, animation: 'punch', description: 'Indexed for maximum pain' },
@@ -114,6 +117,7 @@ export const fighters: Fighter[] = [
     color: '#8B5CF6',
     colorSecondary: '#A78BFA',
     avatar: '🦙',
+    imageUrl: '/fighters/llama.png',
     stats: { attack: 7, defense: 7, speed: 7, intelligence: 7 },
     moves: [
       { name: 'Open Fist', damage: 11, type: 'basic', energyCost: 0, accuracy: 0.93, animation: 'punch', description: 'Open source, open palm, open wound' },
@@ -149,6 +153,7 @@ export const fighters: Fighter[] = [
     color: '#F43F5E',
     colorSecondary: '#FB7185',
     avatar: '🌪️',
+    imageUrl: '/fighters/mistral.png',
     stats: { attack: 9, defense: 5, speed: 9, intelligence: 8 },
     moves: [
       { name: 'Mistral Wind', damage: 13, type: 'basic', energyCost: 0, accuracy: 0.88, animation: 'punch', description: 'A swift European jab' },
@@ -184,6 +189,7 @@ export const fighters: Fighter[] = [
     color: '#EF4444',
     colorSecondary: '#F87171',
     avatar: '🤘',
+    imageUrl: '/fighters/grok.png',
     stats: { attack: 9, defense: 6, speed: 7, intelligence: 7 },
     moves: [
       { name: 'Edgy Punch', damage: 14, type: 'basic', energyCost: 0, accuracy: 0.85, animation: 'punch', description: 'Maximum edge, maximum damage' },
@@ -219,6 +225,7 @@ export const fighters: Fighter[] = [
     color: '#06B6D4',
     colorSecondary: '#22D3EE',
     avatar: '✈️',
+    imageUrl: '/fighters/copilot.png',
     stats: { attack: 6, defense: 8, speed: 8, intelligence: 8 },
     moves: [
       { name: 'Autocomplete Jab', damage: 10, type: 'basic', energyCost: 0, accuracy: 0.95, animation: 'punch', description: 'Predicts and completes your defeat' },
@@ -254,6 +261,7 @@ export const fighters: Fighter[] = [
     color: '#7C3AED',
     colorSecondary: '#8B5CF6',
     avatar: '🔍',
+    imageUrl: '/fighters/deepseek.png',
     stats: { attack: 8, defense: 7, speed: 6, intelligence: 9 },
     moves: [
       { name: 'Deep Strike', damage: 13, type: 'basic', energyCost: 0, accuracy: 0.89, animation: 'punch', description: 'Seeks the deepest weakness' },

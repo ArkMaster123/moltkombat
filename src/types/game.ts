@@ -18,7 +18,8 @@ export interface Fighter {
   company: string;
   color: string; // primary neon accent
   colorSecondary: string;
-  avatar: string; // placeholder emoji or image path
+  avatar: string; // fallback emoji
+  imageUrl: string; // path to fighter portrait PNG
   stats: {
     attack: number;  // 1-10
     defense: number;  // 1-10

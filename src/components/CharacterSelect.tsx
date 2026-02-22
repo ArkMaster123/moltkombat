@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Fighter } from '../types/game';
 import { fighters } from '../data/fighters';
+import FighterPortrait from './FighterPortrait';
+import { playSound } from '../utils/sound';
 
 interface CharacterSelectProps {
   onFight: (p1: Fighter, p2: Fighter) => void;
@@ -14,6 +16,7 @@ export default function CharacterSelect({ onFight, onBack }: CharacterSelectProp
   const [selectingFor, setSelectingFor] = useState<1 | 2>(1);
 
   function handleSelect(fighter: Fighter) {
+    playSound('select');
     if (selectingFor === 1) {
       setPlayer1(fighter);
       setSelectingFor(2);
@@ -93,7 +96,7 @@ export default function CharacterSelect({ onFight, onBack }: CharacterSelectProp
                     </span>
                   )}
 
-                  <span className="text-4xl mb-2">{fighter.avatar}</span>
+                  <FighterPortrait fighter={fighter} size="lg" className="mb-2" />
                   <span
                     className="font-[Orbitron] font-bold text-sm tracking-wider"
                     style={{ color: fighter.color }}
@@ -168,7 +171,7 @@ export default function CharacterSelect({ onFight, onBack }: CharacterSelectProp
                 className="flex flex-col p-6 h-full"
               >
                 <div className="text-center mb-6">
-                  <span className="text-6xl">{hoveredOrSelected.avatar}</span>
+                  <FighterPortrait fighter={hoveredOrSelected} size="xl" className="mx-auto" />
                   <h3
                     className="font-[Orbitron] font-black text-2xl mt-3 tracking-wider"
                     style={{ color: hoveredOrSelected.color }}

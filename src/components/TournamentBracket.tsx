@@ -4,6 +4,7 @@ import type { Fighter, Tournament, MatchResult, GameScreen } from '../types/game
 import { fighters } from '../data/fighters';
 import { createTournament, advanceTournament, getCurrentMatch, getTournamentWinner } from '../utils/tournament';
 import BattleArena from './BattleArena';
+import FighterPortrait from './FighterPortrait';
 
 interface TournamentBracketProps {
   onNavigate: (screen: GameScreen) => void;
@@ -96,8 +97,8 @@ function TournamentSetup({ onStart, onBack }: { onStart: () => void; onBack: () 
         <div className="grid grid-cols-4 gap-3 mb-10 max-w-lg mx-auto">
           {fighters.map((f) => (
             <div key={f.id} className="flex flex-col items-center p-3 bg-mk-panel border border-mk-border rounded-sm">
-              <span className="text-3xl">{f.avatar}</span>
-              <span className="font-[Orbitron] text-[10px] mt-1 tracking-wider" style={{ color: f.color }}>
+              <FighterPortrait fighter={f} size="md" />
+              <span className="font-[Orbitron] text-[10px] mt-2 tracking-wider" style={{ color: f.color }}>
                 {f.name}
               </span>
             </div>
@@ -230,7 +231,7 @@ function MatchSlot({
     >
       {fighter ? (
         <>
-          <span className="text-lg">{fighter.avatar}</span>
+          <FighterPortrait fighter={fighter} size="xs" />
           <span
             className="font-[Orbitron] text-xs tracking-wider flex-1"
             style={{ color: fighter.color }}
@@ -276,9 +277,7 @@ function TournamentComplete({
         <span className="font-[Orbitron] text-sm tracking-[0.3em] text-mk-gold block mb-4">
           TOURNAMENT CHAMPION
         </span>
-        <div className="text-9xl mb-4" style={{ filter: `drop-shadow(0 0 40px ${champion.color})` }}>
-          {champion.avatar}
-        </div>
+        <FighterPortrait fighter={champion} size="xl" className="mx-auto mb-4" />
         <h2
           className="font-[Orbitron] font-black text-6xl tracking-wider mb-2"
           style={{ color: champion.color, textShadow: `0 0 50px ${champion.color}40` }}

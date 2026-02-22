@@ -4,6 +4,8 @@ import type { Fighter, FighterState, CombatEvent, Move, MatchResult } from '../t
 import { createFighterState, executeTurn, aiSelectMove, getAvailableMoves, getRandomTrashTalk } from '../utils/combat';
 import HealthBar from './HealthBar';
 import CombatLog from './CombatLog';
+import FighterPortrait from './FighterPortrait';
+import { playSound } from '../utils/sound';
 
 interface BattleArenaProps {
   player1: Fighter;
@@ -38,6 +40,7 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
     if (phase !== 'intro') return;
     const timer1 = setTimeout(() => {
       setAnnouncement(`ROUND ${round}`);
+      playSound('round_start');
     }, 300);
     const timer2 = setTimeout(() => {
       addEvent({
@@ -55,6 +58,7 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
     }, 2000);
     const timer4 = setTimeout(() => {
       setAnnouncement('FIGHT!');
+      playSound('countdown');
     }, 2800);
     const timer5 = setTimeout(() => {
       setAnnouncement(null);
@@ -80,6 +84,26 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
     const defender = currentTurn === 'p1' ? p2State : p1State;
 
     const result = executeTurn(attacker, defender, move);
+
+    // Play sound based on move/result
+    const hitEvent = result.events.find(e => e.type === 'attack' || e.type === 'critical');
+    const missEvent = result.events.find(e => e.type === 'miss');
+    const koEvt = result.events.find(e => e.type === 'ko');
+    if (koEvt) {
+      playSound('ko');
+    } else if (hitEvent?.type === 'critical') {
+      playSound('critical');
+    } else if (missEvent) {
+      playSound('miss');
+    } else if (move.type === 'finisher') {
+      playSound('finisher');
+    } else if (move.type === 'special') {
+      playSound('special');
+    } else if (move.animation === 'kick') {
+      playSound('kick');
+    } else {
+      playSound('punch');
+    }
 
     // Track stats
     const attackerId = attacker.fighter.id;
@@ -120,6 +144,7 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
       setTimeout(() => {
         setPhase('finished');
         setAnnouncement(`${winner.name} WINS!`);
+        playSound('victory');
         onMatchEnd({
           player1,
           player2,
@@ -213,17 +238,12 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center"
         >
-          <div
-            className="text-8xl md:text-9xl"
-            style={{ filter: `drop-shadow(0 0 20px ${player1.color})` }}
-          >
-            {player1.avatar}
-          </div>
+          <FighterPortrait fighter={player1} size="arena" />
           {currentTurn === 'p1' && phase === 'fighting' && (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-[Orbitron] text-xs text-mk-gold mt-2 tracking-wider"
+              className="font-[Orbitron] text-xs text-mk-gold mt-3 tracking-wider"
             >
               ATTACKING
             </motion.span>
@@ -268,17 +288,12 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center"
         >
-          <div
-            className="text-8xl md:text-9xl"
-            style={{ filter: `drop-shadow(0 0 20px ${player2.color})` }}
-          >
-            {player2.avatar}
-          </div>
+          <FighterPortrait fighter={player2} size="arena" className="scale-x-[-1]" />
           {currentTurn === 'p2' && phase === 'fighting' && (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-[Orbitron] text-xs text-mk-gold mt-2 tracking-wider"
+              className="font-[Orbitron] text-xs text-mk-gold mt-3 tracking-wider"
             >
               ATTACKING
             </motion.span>

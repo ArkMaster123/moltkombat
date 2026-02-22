@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import type { MatchResult, GameScreen } from '../types/game';
 import { getWinQuote, getLoseQuote } from '../utils/combat';
+import FighterPortrait from './FighterPortrait';
 
 interface ResultScreenProps {
   result: MatchResult;
@@ -39,9 +40,7 @@ export default function ResultScreen({ result, onNavigate }: ResultScreenProps) 
         >
           WINNER
         </motion.span>
-        <div className="text-8xl mb-4" style={{ filter: `drop-shadow(0 0 30px ${winner.color})` }}>
-          {winner.avatar}
-        </div>
+        <FighterPortrait fighter={winner} size="xl" className="mx-auto mb-4" />
         <h2
           className="font-[Orbitron] font-black text-5xl md:text-6xl tracking-wider"
           style={{ color: winner.color, textShadow: `0 0 40px ${winner.color}40` }}

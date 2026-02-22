@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { FighterState } from '../types/game';
+import FighterPortrait from './FighterPortrait';
 
 interface HealthBarProps {
   state: FighterState;
@@ -19,7 +20,7 @@ export default function HealthBar({ state, side }: HealthBarProps) {
     <div className={`flex flex-col ${isRight ? 'items-end' : 'items-start'} w-full`}>
       {/* Fighter name */}
       <div className={`flex items-center gap-2 mb-1 ${isRight ? 'flex-row-reverse' : ''}`}>
-        <span className="text-2xl">{state.fighter.avatar}</span>
+        <FighterPortrait fighter={state.fighter} size="sm" />
         <div className={isRight ? 'text-right' : ''}>
           <span
             className="font-[Orbitron] font-bold text-sm tracking-wider"

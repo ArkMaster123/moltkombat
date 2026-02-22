@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { GameScreen } from '../types/game';
 import { fighters } from '../data/fighters';
 import { loadStats, clearStats } from '../utils/stats';
+import FighterPortrait from './FighterPortrait';
 
 interface StatsScreenProps {
   onNavigate: (screen: GameScreen) => void;
@@ -77,7 +78,7 @@ export default function StatsScreen({ onNavigate }: StatsScreenProps) {
                       <span className="font-[Orbitron] font-bold text-lg text-gray-600 w-8 text-center">
                         {idx + 1}
                       </span>
-                      <span className="text-2xl">{entry.fighter.avatar}</span>
+                      <FighterPortrait fighter={entry.fighter} size="sm" />
                       <div className="flex-1">
                         <span
                           className="font-[Orbitron] font-bold text-sm tracking-wider"
@@ -118,7 +119,7 @@ export default function StatsScreen({ onNavigate }: StatsScreenProps) {
                       className="flex items-center justify-between p-3 bg-mk-panel/50 border border-mk-border/50 rounded-sm text-sm"
                     >
                       <div className="flex items-center gap-2">
-                        <span>{match.player1.avatar}</span>
+                        <FighterPortrait fighter={match.player1} size="xs" />
                         <span style={{ color: match.player1.color }} className="font-[Orbitron] text-xs">
                           {match.player1.name}
                         </span>
@@ -128,7 +129,7 @@ export default function StatsScreen({ onNavigate }: StatsScreenProps) {
                         <span style={{ color: match.player2.color }} className="font-[Orbitron] text-xs">
                           {match.player2.name}
                         </span>
-                        <span>{match.player2.avatar}</span>
+                        <FighterPortrait fighter={match.player2} size="xs" />
                       </div>
                       <span
                         className="font-[Orbitron] text-[10px] px-2 py-0.5 border rounded-sm"
