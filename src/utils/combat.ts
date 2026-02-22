@@ -82,7 +82,7 @@ function calculateDamage(
   return Math.round(Math.max(1, baseDamage));
 }
 
-function maybeApplyStatusEffect(move: Move, defender: FighterState): StatusEffect | null {
+function maybeApplyStatusEffect(move: Move, _defender: FighterState): StatusEffect | null {
   if (Math.random() > STATUS_EFFECT_CHANCE) return null;
   if (move.type === 'basic') return null;
 

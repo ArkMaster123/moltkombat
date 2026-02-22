@@ -159,7 +159,6 @@ export default function BattleArena({ player1, player2, onMatchEnd, onBack }: Ba
   }, [currentTurn, autoPlay, phase, p1State, p2State, executeMove]);
 
   const currentAttacker = currentTurn === 'p1' ? p1State : p2State;
-  const currentDefender = currentTurn === 'p1' ? p2State : p1State;
   const availableMoves = phase === 'fighting' ? getAvailableMoves(currentAttacker) : [];
 
   return (
